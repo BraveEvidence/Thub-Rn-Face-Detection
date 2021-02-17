@@ -1,7 +1,10 @@
 package com.reactnativethubrnfacedetection
 
 import android.net.Uri
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.Callback
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactContextBaseJavaModule
+import com.facebook.react.bridge.ReactMethod
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
@@ -101,21 +104,11 @@ class ThubRnFaceDetectionModule(private val reactContext: ReactApplicationContex
             if (face.leftEyeOpenProbability != null) {
               leftEyeOpenProb = face?.leftEyeOpenProbability.toString()
             }
+            
 
-            val resultData: WritableMap = WritableNativeMap()
-            resultData.putString("leftEarPos",leftEarPos)
-            resultData.putString("rightEarPos",rightEarPos)
-            resultData.putString("leftCheekPos",leftCheekPos)
-            resultData.putString("leftEyePos",leftEyePos)
-            resultData.putString("mouthBottomPos",mouthBottomPos)
-            resultData.putString("mouthLeftPos",mouthLeftPos)
-            resultData.putString("mouthRightPos",mouthRightPos)
-            resultData.putString("rightCheekPos",rightCheekPos)
-            resultData.putString("smileProb",smileProb)
-            resultData.putString("rightEyeOpenProb",rightEyeOpenProb)
-            resultData.putString("leftEyeOpenProb",leftEyeOpenProb)
-
-            faceDetectionFailureCallback?.invoke(resultData)
+            faceDetectionFailureCallback?.invoke("leftEarPos:${leftEarPos},rightEarPos:${rightEarPos},leftCheekPos:${leftCheekPos},leftEyePos:${leftEyePos}," +
+              "mouthBottomPos:${mouthBottomPos},mouthLeftPos:${mouthLeftPos},mouthRightPos:${mouthRightPos},leftEyeOpenProb:${leftEyeOpenProb}," +
+              "rightCheekPos:${rightCheekPos},smileProb:${smileProb},rightEyeOpenProb:${rightEyeOpenProb}")
 
 
           } else {
