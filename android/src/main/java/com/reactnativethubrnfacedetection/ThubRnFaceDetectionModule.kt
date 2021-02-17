@@ -3,12 +3,12 @@ package com.reactnativethubrnfacedetection
 import android.net.Uri
 import com.facebook.react.bridge.*
 import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.face.FaceContour
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.google.mlkit.vision.face.FaceLandmark
 import java.io.File
 import java.io.IOException
+
 
 class ThubRnFaceDetectionModule(private val reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
@@ -102,19 +102,20 @@ class ThubRnFaceDetectionModule(private val reactContext: ReactApplicationContex
               leftEyeOpenProb = face?.leftEyeOpenProbability.toString()
             }
 
-            faceDetectionFailureCallback?.invoke(mapOf(
-              "leftEarPos" to leftEarPos,
-              "rightEarPos" to rightEarPos,
-              "leftCheekPos" to leftCheekPos,
-              "leftEyePos" to leftEyePos,
-              "mouthBottomPos" to mouthBottomPos,
-              "mouthLeftPos" to mouthLeftPos,
-              "mouthRightPos" to mouthRightPos,
-              "rightCheekPos" to rightCheekPos,
-              "smileProb" to smileProb,
-              "rightEyeOpenProb" to rightEyeOpenProb,
-              "leftEyeOpenProb" to leftEyeOpenProb,
-            ))
+            val resultData: WritableMap = WritableNativeMap()
+            resultData.putString("leftEarPos",leftEarPos)
+            resultData.putString("rightEarPos",rightEarPos)
+            resultData.putString("leftCheekPos",leftCheekPos)
+            resultData.putString("leftEyePos",leftEyePos)
+            resultData.putString("mouthBottomPos",mouthBottomPos)
+            resultData.putString("mouthLeftPos",mouthLeftPos)
+            resultData.putString("mouthRightPos",mouthRightPos)
+            resultData.putString("rightCheekPos",rightCheekPos)
+            resultData.putString("smileProb",smileProb)
+            resultData.putString("rightEyeOpenProb",rightEyeOpenProb)
+            resultData.putString("leftEyeOpenProb",leftEyeOpenProb)
+
+            faceDetectionFailureCallback?.invoke(resultData)
 
 
           } else {
