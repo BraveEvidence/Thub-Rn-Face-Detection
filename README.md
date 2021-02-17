@@ -11,11 +11,17 @@ npm install react-native-thub-rn-face-detection
 ## Usage
 
 ```js
-import ThubRnFaceDetection from "react-native-thub-rn-face-detection";
+import ThubRnFaceDetection from 'react-native-thub-rn-face-detection';
 
-// ...
-
-const result = await ThubRnFaceDetection.multiply(3, 7);
+ThubRnFaceDetection.faceDetection(
+  imagePath,
+  (data) => {
+    console.log(data);
+  },
+  (errorMessage) => {
+    console.log(errorMessage);
+  }
+);
 ```
 
 ## Contributing
