@@ -104,9 +104,9 @@ class ThubRnFaceDetectionModule(private val reactContext: ReactApplicationContex
             if (face.leftEyeOpenProbability != null) {
               leftEyeOpenProb = face?.leftEyeOpenProbability.toString()
             }
-            
 
-            faceDetectionFailureCallback?.invoke("leftEarPos:${leftEarPos},rightEarPos:${rightEarPos},leftCheekPos:${leftCheekPos},leftEyePos:${leftEyePos}," +
+
+            faceDetectionSuccessCallback?.invoke("leftEarPos:${leftEarPos},rightEarPos:${rightEarPos},leftCheekPos:${leftCheekPos},leftEyePos:${leftEyePos}," +
               "mouthBottomPos:${mouthBottomPos},mouthLeftPos:${mouthLeftPos},mouthRightPos:${mouthRightPos},leftEyeOpenProb:${leftEyeOpenProb}," +
               "rightCheekPos:${rightCheekPos},smileProb:${smileProb},rightEyeOpenProb:${rightEyeOpenProb}")
 
